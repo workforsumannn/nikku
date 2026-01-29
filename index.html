@@ -3,81 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorry Nikku ❤️ (20 Sweetest Pages)</title>
+    <title>Sorry Nikku ❤️ (Extra Cute Edition)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <!-- Cute & Sweet Fonts -->
+    <!-- Super Cute & Playful Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;600&family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --dark-bg: #0b0e14;
-            --soft-pink: #ffafcc;
+            --dark-bg: #0f0a1a;
+            --soft-pink: #ffc2d1;
             --main-pink: #ff85a2;
-            --card-bg: rgba(22, 27, 34, 0.94);
+            --card-bg: rgba(30, 20, 50, 0.9);
+            --sparkle-color: #ffeb3b;
         }
         body {
             font-family: 'Fredoka', sans-serif;
-            background: radial-gradient(circle at center, #1a1b26 0%, #0b0e14 100%);
-            color: #f1f5f9;
+            background: linear-gradient(135deg, #0f0a1a 0%, #2a1b3d 100%);
+            color: #fff0f5;
             overflow-x: hidden;
             min-height: 100vh;
+            cursor: url('https://cur.cursors-4u.net/symbols/sym-1/sym49.cur'), auto;
         }
         .cute-font { font-family: 'DynaPuff', cursive; }
         
-        /* Glassmorphism Effect */
+        /* Bubbly Glassmorphism */
         .glass-card {
             background: var(--card-bg);
             backdrop-filter: blur(25px);
-            border: 2px solid rgba(255, 175, 204, 0.15);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            border: 3px solid rgba(255, 133, 162, 0.2);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9);
+            border-radius: 4rem;
         }
 
         .pill-btn {
             border-radius: 999px;
+            background: linear-gradient(45deg, var(--main-pink), #ffafcc);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
         .pill-btn:hover {
-            transform: scale(1.08) translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 133, 162, 0.4);
+            transform: scale(1.1) rotate(2deg);
+            box-shadow: 0 10px 30px rgba(255, 133, 162, 0.6);
         }
 
         /* Scratch Card area */
         .scratch-container {
             position: relative; width: 290px; height: 160px;
-            margin: 0 auto; border-radius: 2rem; overflow: hidden;
-            border: 3px solid rgba(255, 175, 204, 0.3);
+            margin: 0 auto; border-radius: 2.5rem; overflow: hidden;
+            border: 4px solid var(--soft-pink);
         }
-        canvas#scratchCanvas { position: absolute; top: 0; left: 0; z-index: 10; cursor: pointer; }
+        canvas#scratchCanvas { position: absolute; top: 0; left: 0; z-index: 10; cursor: crosshair; }
         .scratch-content {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; align-items: center; justify-content: center;
-            background: #1c2128; border-radius: 1.8rem;
+            background: #1c152d; border-radius: 2rem;
         }
 
-        /* Sweet Floating Animation */
-        .floating { animation: float 4s ease-in-out infinite; }
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0); }
-            50% { transform: translateY(-15px) rotate(3deg); }
+        /* Float Animations */
+        .floating { animation: floatAnim 4s ease-in-out infinite; }
+        @keyframes floatAnim {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
         }
 
-        .fade-in { animation: fadeIn 0.6s ease-out forwards; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.97); }
-            to { opacity: 1; transform: scale(1); }
+        .bouncing { animation: bounce 2s infinite; }
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
-        /* Invisible Ink for mystery */
+        /* NEW PYARA PAGE TRANSITION - Flutter & Glow */
+        .page-entry { 
+            animation: cuteFlutter 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; 
+        }
+        @keyframes cuteFlutter {
+            0% { 
+                opacity: 0; 
+                transform: scale(0.7) translateY(100px) rotate(-10deg); 
+                filter: blur(15px) brightness(2);
+            }
+            60% {
+                transform: scale(1.05) translateY(-10px) rotate(2deg);
+            }
+            100% { 
+                opacity: 1; 
+                transform: scale(1) translateY(0) rotate(0deg); 
+                filter: blur(0) brightness(1);
+            }
+        }
+
+        /* Tap-to-Reveal Style */
         .invisible-ink {
-            color: transparent; transition: color 1s ease; cursor: pointer;
+            color: transparent; 
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
+            cursor: pointer;
+            padding: 5px 15px;
+            border-radius: 10px;
+            background: rgba(255, 194, 209, 0.05);
         }
-        .invisible-ink:hover { color: var(--soft-pink); text-shadow: 0 0 15px var(--soft-pink); }
+        .invisible-ink.revealed { 
+            color: #fff; 
+            text-shadow: 0 0 15px var(--main-pink), 0 0 30px var(--main-pink);
+            background: rgba(255, 133, 162, 0.2);
+        }
 
         .progress-bar {
-            height: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 5px; overflow: hidden; width: 100%;
+            height: 14px; background: rgba(255, 255, 255, 0.05); border-radius: 10px; overflow: hidden; width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .progress-fill { height: 100%; background: linear-gradient(to right, var(--main-pink), #ffafcc); transition: width 0.5s ease; }
+        .progress-fill { 
+            height: 100%; 
+            background: linear-gradient(to right, #ff85a2, #ffafcc, #bde0fe); 
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
         
+        .tap-particle {
+            position: fixed; pointer-events: none; z-index: 9999;
+            animation: particleAnim 0.8s ease-out forwards;
+        }
+        @keyframes particleAnim {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            100% { transform: translate(-50%, -150%) scale(0); opacity: 0; }
+        }
+
         .sparkle {
             position: absolute; background: white; border-radius: 50%; pointer-events: none;
             animation: sparkle-anim 3s infinite;
@@ -87,21 +135,19 @@
             50% { transform: scale(1.5); opacity: 0.3; }
         }
 
-        .magic-pulse {
-            animation: pulse 2s infinite;
-        }
+        .magic-pulse { animation: pulse 2s infinite; }
         @keyframes pulse {
             0% { transform: scale(1); filter: brightness(1); }
             50% { transform: scale(1.15); filter: brightness(1.6); }
             100% { transform: scale(1); filter: brightness(1); }
         }
 
-        audio::-webkit-media-controls-panel { background-color: #2d333b; }
+        audio::-webkit-media-controls-panel { background-color: #2d1b4d; }
     </style>
 </head>
-<body class="flex flex-col items-center justify-center p-4">
+<body onclick="createTapEffect(event)" class="flex flex-col items-center justify-center p-4">
 
-    <!-- Background Decoration -->
+    <!-- Kawaii Background Decor -->
     <div id="stars-container" class="fixed inset-0 pointer-events-none z-0"></div>
     <div id="decorations" class="fixed inset-0 pointer-events-none z-0"></div>
 
@@ -111,32 +157,32 @@
     </audio>
 
     <!-- Lock Screen -->
-    <div id="lockScreen" class="fixed inset-0 z-50 flex items-center justify-center bg-black/98">
-        <div class="max-w-sm w-full glass-card p-10 rounded-[3rem] text-center border-pink-500/20">
-            <div class="text-6xl mb-6 floating">🦋</div>
-            <h1 class="cute-font text-3xl text-pink-300 mb-2">Sirf Nikku ke liye...</h1>
-            <p class="text-slate-500 text-sm mb-8 italic">Nikku, kya aap 20 pages ki is magical journey ke liye taiyar hain? ✨</p>
-            <input type="password" id="passCode" placeholder="Secret Key..." class="w-full bg-slate-900 px-5 py-4 rounded-full border border-slate-700 focus:border-pink-300 outline-none text-center text-pink-200 mb-6 font-bold tracking-widest text-lg">
-            <button onclick="unlockBook()" class="w-full bg-pink-600 hover:bg-pink-500 text-white font-bold py-4 rounded-full pill-btn shadow-lg">Open Magic 🗝️</button>
-            <p id="errorMsg" class="hidden text-pink-400 text-xs mt-4 font-bold">Oops! Sahi password daalo na... (Try: nikku)</p>
+    <div id="lockScreen" class="fixed inset-0 z-50 flex items-center justify-center bg-[#0a0510]/98">
+        <div class="max-w-sm w-full glass-card p-12 text-center">
+            <div class="text-7xl mb-8 floating">🧸</div>
+            <h1 class="cute-font text-4xl text-pink-300 mb-4">Nikku's Secret Book</h1>
+            <p class="text-slate-400 text-sm mb-10 italic">Only the cutest person can open this 20-page magic book! ✨</p>
+            <input type="password" id="passCode" placeholder="Nikku ka name?" class="w-full bg-purple-900/30 px-6 py-5 rounded-full border-2 border-pink-500/30 focus:border-pink-400 outline-none text-center text-pink-200 mb-8 font-bold tracking-widest text-xl">
+            <button onclick="unlockBook()" class="w-full text-white font-bold py-5 rounded-full pill-btn text-xl shadow-2xl">Magic Unlock! 🗝️</button>
+            <p id="errorMsg" class="hidden text-pink-400 text-sm mt-5 font-bold animate-bounce">Aww, galat password! Try 'nikku' 🥺</p>
         </div>
     </div>
 
     <!-- Main Container -->
     <div id="bookContainer" class="hidden max-w-2xl w-full z-10">
-        <div class="flex flex-col items-center mb-6">
-            <h2 class="cute-font text-3xl text-pink-300 mb-2">Pyaari Si Scrapbook 💌</h2>
+        <div class="flex flex-col items-center mb-10">
+            <h2 class="cute-font text-4xl text-pink-300 mb-4 drop-shadow-xl">Pyaari Scrapbook 🍭</h2>
             <div class="progress-bar max-w-md"><div id="progressFill" class="progress-fill" style="width: 5%;"></div></div>
-            <p id="pageNumber" class="text-[10px] text-slate-500 mt-2 uppercase tracking-widest">Page 1 of 20</p>
+            <p id="pageNumber" class="text-xs text-pink-200 mt-3 font-bold uppercase tracking-widest bg-pink-500/10 px-4 py-1 rounded-full">Page 1 of 20</p>
         </div>
 
-        <div class="relative glass-card rounded-[3.5rem] p-8 md:p-14 min-h-[520px] flex flex-col items-center justify-center text-center" id="pageDisplay">
-            <!-- Content will be injected by JS -->
+        <div class="relative glass-card p-10 md:p-16 min-h-[550px] flex flex-col items-center justify-center text-center" id="pageDisplay">
+            <!-- Content Injected Here -->
         </div>
 
-        <div class="flex justify-between items-center mt-6 w-full max-w-md mx-auto px-4">
-            <button id="prevBtn" onclick="changePage(-1)" class="text-slate-500 text-sm hover:text-pink-300 transition-colors">← Peeche</button>
-            <button id="nextBtn" onclick="changePage(1)" class="bg-pink-500 px-10 py-3 pill-btn font-bold text-sm shadow-xl text-white">Aage →</button>
+        <div class="flex justify-between items-center mt-10 w-full max-w-md mx-auto px-4">
+            <button id="prevBtn" onclick="changePage(-1)" class="text-pink-200/60 text-sm hover:text-pink-300 font-bold transition-all">← Backie</button>
+            <button id="nextBtn" onclick="changePage(1)" class="text-white bg-pink-500 px-12 py-4 pill-btn font-bold text-lg shadow-2xl">Nextie →</button>
         </div>
     </div>
 
@@ -145,28 +191,27 @@
         let currentPage = 1;
         const totalPages = 20;
 
-        // Sweet and Cute Content for 20 Pages
         const bookData = {
-            1: { emoji: '🥺', title: 'Heartfelt Sorry', text: 'Main jaanta hoon pichle kuch waqt se mujhse galtiyan hui hain. Ye 20 pages sirf tumhe hasane aur manane ke liye hain. Please muskurao na?' },
-            2: { emoji: '🎩', title: 'Magical Wish', text: 'Abhi apne aankhein band karo aur ek wish maango... Meri wish toh ye hai ki tum mujhse dobara kabhi gussa na ho! ✨' },
-            3: { emoji: '🕵️‍♀️', title: 'Invisible Hug', text: 'Niche khali jagah par ungli feriye, wahan ek message chhupa hai: <br><span class="invisible-ink handwriting text-2xl">Main tumhe bahut zyada miss kar raha hoon! ❤️</span>' },
-            4: { emoji: '🍭', title: 'Sweetest Deal', text: 'Chalo ek deal karte hain: Tum hasogi, aur main tumhe dher saari mithi treats dunga. Done? (Silent smile means Yes! 😂)' },
-            5: { emoji: '🧮', title: 'The Math of Us', text: 'Me + My Mistakes = ❌ <br> Nikku + Smile = ✅ <br><span class="text-pink-400 font-bold">Hum Dono - Fights = Forever ❤️</span>' },
-            6: { emoji: '🦋', title: 'Butterfly Effect', text: 'Tumhara ek smile karna mere poore boring din ko magical bana deta hai. Bas ek choti si smile de do na?' },
-            7: { emoji: '🧐', title: 'The Mirror', text: 'Abhi apne phone ke front camera mein dekho. Wahan jo sabse pyaara aur sundar insaan dikh raha hai, wahi meri poori duniya hai.' },
-            8: { emoji: '🌈', title: 'Colors of You', text: 'Jaise baarish ke baad rainbow aata hai, waise hi jhagde ke baad humari mithi baatein aani chahiye!' },
-            9: { emoji: '🐜', title: 'Bug Fixer', text: 'Main ek developer ki tarah apni galtiyon ka "Patch" le kar aaya hoon. Release version 1.0: "Nikku is Happy Forever".' },
-            10: { emoji: '🎁', title: 'Scratch Card', type: 'scratch', text: 'Is box ko scratch karke ek secret promise reveal karo!' },
-            11: { emoji: '😴', title: 'Sweet Dreams', text: 'Main sapno mein bhi tumse sorry maang raha hota hoon. Socho kitna bura lagta hoga mujhe? Maaf kar do na! 🥺' },
-            12: { emoji: '🧊', title: 'Chill Out', text: 'Ye lo ek virtual barf 🧊... Isse apna sara gussa thanda kar lo, aur hum baatein shuru karte hain.' },
-            13: { emoji: '🧚‍♀️', title: 'Fairy Tale', text: 'Har pyaari kahani mein ek chhota sa jhagda hota hai, par end hamesha "Happily Ever After" hota hai. Wahi chahiye humein!' },
-            14: { emoji: '📢', title: 'Public Notice', text: 'Official announcement: "Nikku is the most precious person in the world." (Applied to every corner of my heart)' },
-            15: { emoji: '🧘‍♀️', title: 'Peace Yoga', text: 'Ek gehri saans lo... aur bolo "Mera gussa paani mein gaya, chappak!" 😂 (Don\'t laugh, okay laugh!)' },
-            16: { emoji: '💖', title: 'Magic Pulse', type: 'pulse', text: 'Is heart par tap karke dekho, ye kaise tumhare liye dhadakta hai! (Tap tap tap ✨)' },
-            17: { emoji: '🍕', title: 'The Food Pact', text: 'Maafi ke badle ek Cheese Burst Pizza meri taraf se. Deal? I know you can\'t say no to pizza! 😋' },
-            18: { emoji: '🎵', title: 'Background Music', type: 'music', text: 'Ye gaana suniye... Iski dhun bilkul humari mithi yaadon jaisi hai. Gussa thook do na!' },
-            19: { emoji: '⚖️', title: 'The Big Verdict', type: 'verdict', text: 'Ab final faisla aapka hai... Kya aapne apne is pagal ko maaf kiya?' },
-            20: { emoji: '🎊', title: 'The Finale', type: 'finale', text: 'Yayyy! 20 Sweet Pages completed. Thank you for being my Nikku! ❤️ Ab jaldi se call pe aao!' }
+            1: { emoji: '🥺', title: 'I Am sowwy!', text: 'Nikku, main jaanta hoon mujhse galti hui. Ye 20 pages meri maafi ka saboot hain. Please poora dekhna aur smile karna! ❤️' },
+            2: { emoji: '🪄', title: 'Magical Wish', text: 'Apne eyes close karo... Maine ek spell cast kiya hai jisse tumhara sara gussa magically bubble ban ke ud jayega! 🫧' },
+            3: { emoji: '💌', title: 'Tap to See', text: 'Niche khali box par tap karo, ek secret baat likhi hai: <br><br><span class="invisible-ink handwriting text-2xl" onclick="this.classList.toggle(\'revealed\')">Tum duniya ki sabse pyari ladki ho! ❤️</span>' },
+            4: { emoji: '🐱', title: 'Kitty Logic', text: 'Main bilkul ek cute kitten jaisi shakal bana ke sorry bol raha hoon. Kya ab bhi gussa rahogi? Nyo nyo! 🐾' },
+            5: { emoji: '🍭', title: 'Sweet Pact', text: 'Chalo ek sweet deal karte hain: Tum maafi dogi, aur main tumhe dher saari ice-cream aur chocolates khilaunga! 🍦🍫' },
+            6: { emoji: '🦋', title: 'Fluttery Heart', text: 'Jab tum smile karti ho na, mere dil mein hazaron titliyan udne lagti hain. Ek bar smile de do na? 🦋' },
+            7: { emoji: '🤳', title: 'Beauty Check', text: 'Apne phone ke reflection mein dekho... Wahan jo sabse beautiful insaan hai, wahi meri har khushi ki wajah hai. ❤️' },
+            8: { emoji: '🌈', title: 'Rainbow Days', text: 'Humare jhagde toh sirf badal hain, hamari dosti aur pyaar hamesha rainbow ki tarah chamkega! 🌈' },
+            9: { emoji: '🍼', title: 'Baby Nikku', text: 'Thoda gussa theek hai, par itna zyada? Arey Nikku baby, ab maan bhi jaao na! 🥺🍼' },
+            10: { emoji: '🎁', title: 'Scratch & Win', type: 'scratch', text: 'Is magical box ko scratch karo aur apna prize dekho!' },
+            11: { emoji: '😴', title: 'Dreamy Sorry', text: 'Mujhe neend nahi aayegi jab tak tumhara "Okay" wala message nahi aa jata. Maaf kar do na please! 🌙' },
+            12: { emoji: '❄️', title: 'Ice-Cream Peace', text: 'Ye lo ek virtual scoop 🍦... Thanda thanda feel karo aur gussa bhool jaao. Sab theek ho jayega!' },
+            13: { emoji: '🌸', title: 'Flower Power', text: 'Duniya ke saare phool milkar bhi tumhare jitne sundar nahi ho sakte. You are my blooming star! 🌸' },
+            14: { emoji: '🦄', title: 'Unicorn Bond', text: 'Humara bond itna rare aur magical hai ki hum ise chhoti baaton pe kharab nahi kar sakte, right? 🦄' },
+            15: { emoji: '🌬️', title: 'Deep Breath', text: 'Chalo, ek lambi saans lo... aur bolo "Main Nikku hoon, main sabse cool hoon!" 🧘‍♀️ Haso mat! 😂' },
+            16: { emoji: '💓', title: 'Heart Pulse', type: 'pulse', text: 'Is heart par tap karke dekho, ye tumhare liye hi itna fast dhadak raha hai! ✨' },
+            17: { emoji: '🍔', title: 'Foodie Sorry', text: 'I promise next time jab milenge, hum tumhara sabse favorite khana khayenge bina kisi fight ke! Done? 🍟' },
+            18: { emoji: '🎶', title: 'Cute Melodies', type: 'music', text: 'Ye music suniye... Iski har ek dhun mein mera "Sorry" chhupa hua hai. ❤️' },
+            19: { emoji: '🎀', title: 'The Big Choice', type: 'verdict', text: 'Ab bataiye... Kya is pagal insaan ko maafi milegi? Pakka wala?' },
+            20: { emoji: '🎊', title: 'Success Story!', type: 'finale', text: 'Yayyy! Success! Nikku ne maaf kar diya (I hope!). Thank you my cutest star! ❤️ Call pe aao jaldi!' }
         };
 
         function unlockBook() {
@@ -174,7 +219,7 @@
             if(input === correctPassword) {
                 document.getElementById('lockScreen').style.opacity = '0';
                 const music = document.getElementById('bgMusic');
-                if(music) music.play().catch(e => console.log("Music play blocked by browser."));
+                if(music) music.play().catch(e => console.log("Music play blocked"));
                 
                 setTimeout(() => {
                     document.getElementById('lockScreen').style.display = 'none';
@@ -190,23 +235,27 @@
 
         function renderPage() {
             const display = document.getElementById('pageDisplay');
-            display.innerHTML = '';
-            display.className = "relative glass-card rounded-[3.5rem] p-8 md:p-14 min-h-[520px] flex flex-col items-center justify-center text-center fade-in";
             
+            // Trigger Pyara Animation
+            display.classList.remove('page-entry');
+            void display.offsetWidth; // Force reflow
+            display.classList.add('page-entry');
+            
+            display.innerHTML = '';
             const content = bookData[currentPage];
 
             const emojiDiv = document.createElement('div');
-            emojiDiv.className = "text-8xl floating mb-8";
-            if(content.type === 'pulse') emojiDiv.classList.add('magic-pulse', 'cursor-pointer');
+            emojiDiv.className = "text-[100px] floating mb-10 select-none";
+            if(content.type === 'pulse') emojiDiv.classList.add('magic-pulse', 'cursor-pointer', 'bouncing');
             emojiDiv.innerText = content.emoji;
             emojiDiv.onclick = () => { if(content.type === 'pulse') celebrate(); };
             
             const titleH3 = document.createElement('h3');
-            titleH3.className = "cute-font text-3xl text-pink-300 mb-4";
+            titleH3.className = "cute-font text-4xl text-pink-300 mb-6";
             titleH3.innerText = content.title;
             
             const textP = document.createElement('div');
-            textP.className = "text-slate-200 italic max-w-sm leading-relaxed text-lg";
+            textP.className = "text-slate-100 italic max-w-sm leading-relaxed text-xl";
             textP.innerHTML = content.text;
 
             display.appendChild(emojiDiv);
@@ -214,7 +263,7 @@
             display.appendChild(textP);
 
             if(content.type === 'scratch') {
-                const scratchHTML = `<div class="scratch-container shadow-2xl mt-8"><div class="scratch-content"><p class="text-pink-300 font-bold p-6">Promise: Agli baar bina baat call cut nahi karunga! ❤️</p></div><canvas id="scratchCanvas" width="290" height="160"></canvas></div>`;
+                const scratchHTML = `<div class="scratch-container shadow-2xl mt-10"><div class="scratch-content"><p class="text-pink-300 font-bold p-6 text-lg">Promise: Agli baar gusse mein call cut kabhi nahi karunga! ❤️</p></div><canvas id="scratchCanvas" width="290" height="160"></canvas></div>`;
                 const tempDiv = document.createElement('div');
                 tempDiv.innerHTML = scratchHTML;
                 display.appendChild(tempDiv);
@@ -222,7 +271,7 @@
             }
 
             if(content.type === 'verdict') {
-                const buttons = `<div id="forgiveActions" class="flex flex-col space-y-5 items-center mt-10"><button onclick="changePage(1)" class="bg-green-600 hover:bg-green-500 text-white font-bold py-5 px-16 rounded-full pill-btn shadow-2xl text-xl transition-all active:scale-95">Haan, Maaf Kiya! ✅</button><button id="noBtn" onmouseover="moveNoButton()" class="text-slate-500 text-sm underline opacity-40 italic">Nahi! (Try to catch me)</button></div>`;
+                const buttons = `<div id="forgiveActions" class="flex flex-col space-y-6 items-center mt-12"><button onclick="changePage(1)" class="bg-green-500 hover:bg-green-400 text-white font-bold py-6 px-20 rounded-full pill-btn shadow-2xl text-2xl transition-all active:scale-90">Haan, Maaf Kiya! ✅</button><button id="noBtn" onmouseover="moveNoButton()" class="text-pink-200/40 text-sm underline italic">Nahi! (Pakad ke dikhao)</button></div>`;
                 const tempDiv = document.createElement('div');
                 tempDiv.innerHTML = buttons;
                 display.appendChild(tempDiv);
@@ -230,7 +279,7 @@
 
             if(content.type === 'finale') {
                 celebrate();
-                setInterval(celebrate, 3000);
+                setInterval(celebrate, 2500);
             }
 
             updateUI();
@@ -244,7 +293,8 @@
         }
 
         function updateUI() {
-            document.getElementById('progressFill').style.width = (currentPage / totalPages * 100) + '%';
+            const fill = document.getElementById('progressFill');
+            if(fill) fill.style.width = (currentPage / totalPages * 100) + '%';
             document.getElementById('pageNumber').innerText = `Page ${currentPage} of ${totalPages}`;
             document.getElementById('prevBtn').classList.toggle('invisible', currentPage === 1);
             document.getElementById('nextBtn').classList.toggle('invisible', currentPage === totalPages || currentPage === 19);
@@ -255,12 +305,12 @@
             if(!canvas) return;
             const ctx = canvas.getContext('2d');
             let isDrawing = false;
-            ctx.fillStyle = '#475569';
+            ctx.fillStyle = '#6b4f8c'; 
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.font = 'bold 16px Fredoka';
-            ctx.fillStyle = '#cbd5e1';
+            ctx.fillStyle = '#ffc2d1';
             ctx.textAlign = 'center';
-            ctx.fillText('SCRATCH TO REVEAL ❤️', canvas.width/2, canvas.height/2 + 5);
+            ctx.fillText('RUB TO SEE PROMISE ❤️', canvas.width/2, canvas.height/2 + 5);
 
             function scratch(e) {
                 if(!isDrawing) return;
@@ -269,7 +319,7 @@
                 const y = (e.clientY || (e.touches ? e.touches[0].clientY : 0)) - rect.top;
                 ctx.globalCompositeOperation = 'destination-out';
                 ctx.beginPath();
-                ctx.arc(x, y, 28, 0, Math.PI * 2);
+                ctx.arc(x, y, 30, 0, Math.PI * 2);
                 ctx.fill();
             }
             canvas.addEventListener('mousedown', () => isDrawing = true);
@@ -281,44 +331,55 @@
         }
 
         function celebrate() {
-            confetti({ particleCount: 160, spread: 110, origin: { y: 0.75 }, colors: ['#ffafcc', '#ff85a2', '#ffffff', '#ffc8dd'] });
+            confetti({ particleCount: 180, spread: 120, origin: { y: 0.8 }, colors: ['#ffafcc', '#ff85a2', '#ffffff', '#bde0fe'] });
         }
 
         function moveNoButton() {
             const btn = document.getElementById('noBtn');
-            const x = Math.random() * (window.innerWidth - 130);
-            const y = Math.random() * (window.innerHeight - 70);
+            if(!btn) return;
+            const x = Math.random() * (window.innerWidth - 150);
+            const y = Math.random() * (window.innerHeight - 80);
             btn.style.position = 'fixed';
             btn.style.left = x + 'px';
             btn.style.top = y + 'px';
-            btn.innerText = "Nahi pakad paogi! 😜";
+            btn.innerText = "Too slow! 😜";
+        }
+
+        function createTapEffect(e) {
+            const p = document.createElement('div');
+            p.className = 'tap-particle text-2xl select-none';
+            p.innerText = ['✨', '❤️', '🌸', '🎀'][Math.floor(Math.random()*4)];
+            p.style.left = e.clientX + 'px';
+            p.style.top = e.clientY + 'px';
+            document.body.appendChild(p);
+            setTimeout(() => p.remove(), 800);
         }
 
         window.onload = function() {
             const container = document.getElementById('stars-container');
             const decor = document.getElementById('decorations');
-            // Stars sparkle effect
-            for(let i=0; i<45; i++) {
+            if(!container || !decor) return;
+
+            for(let i=0; i<50; i++) {
                 const s = document.createElement('div');
                 s.className = 'sparkle';
-                s.style.width = Math.random()*4 + 'px';
+                s.style.width = Math.random()*5 + 'px';
                 s.style.height = s.style.width;
                 s.style.left = Math.random()*100 + 'vw';
                 s.style.top = Math.random()*100 + 'vh';
                 s.style.animation = `sparkle-anim ${Math.random()*3+2}s infinite`;
-                s.style.animationDelay = Math.random()*3 + 's';
                 container.appendChild(s);
             }
-            // Floating cute icons
+            
             setInterval(() => {
                 const d = document.createElement('div');
-                d.className = 'floating fixed pointer-events-none opacity-10 text-xl';
-                d.innerText = ['🌸', '✨', '🎈', '⭐', '🦋', '🍭'][Math.floor(Math.random()*6)];
+                d.className = 'floating fixed pointer-events-none opacity-20 text-2xl';
+                d.innerText = ['🌸', '✨', '🧸', '🍭', '🦋', '🍼', '🐱'][Math.floor(Math.random()*7)];
                 d.style.left = Math.random()*100 + 'vw';
                 d.style.top = Math.random()*100 + 'vh';
                 decor.appendChild(d);
                 setTimeout(() => d.remove(), 6000);
-            }, 900);
+            }, 800);
         };
     </script>
 </body>
