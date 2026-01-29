@@ -6,7 +6,7 @@
     <title>Nikku's Magical World ❤️</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <!-- Kawaii & Cuddly Fonts -->
+    <!-- Super Cute & Cuddly Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;600&family=Fredoka:wght@400;600&family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -17,7 +17,7 @@
             --accent-pink: #ff85a2;
         }
 
-        /* Essential Mobile Fixes */
+        /* Mobile specific fixes */
         html, body {
             height: 100%;
             margin: 0;
@@ -41,25 +41,26 @@
         .cute-font { font-family: 'DynaPuff', cursive; }
         .handwritten { font-family: 'Gaegu', cursive; }
 
-        /* Super Bubbly Card */
+        /* Super Puffy Glass Card */
         .glass-card {
             background: rgba(45, 30, 70, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             border: 3px solid rgba(255, 194, 209, 0.4);
-            box-shadow: 0 0 40px rgba(255, 133, 162, 0.3);
-            border-radius: 3.5rem;
+            box-shadow: 0 0 50px rgba(255, 133, 162, 0.4);
+            border-radius: 4rem;
             width: 92%;
             max-width: 360px;
             margin: auto;
             position: relative;
             z-index: 20;
-            padding: 2rem;
-            max-height: 85vh;
-            overflow-y: auto;
-            scrollbar-width: none;
+            padding: 1.5rem;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
-        .glass-card::-webkit-scrollbar { display: none; }
 
         /* Pudding Buttons */
         .pill-btn {
@@ -70,47 +71,68 @@
             color: white;
             box-shadow: 0 8px 15px rgba(255, 133, 162, 0.4);
         }
-        .pill-btn:active { transform: scale(0.92); }
+        .pill-btn:active { transform: scale(0.9); }
+
+        /* Runaway "Nahi" Button Logic */
+        #noBtn {
+            transition: all 0.2s ease;
+            z-index: 100;
+        }
+
+        /* Scratch Card Fixes */
+        .scratch-container {
+            position: relative; 
+            width: 280px; 
+            height: 150px;
+            margin: 1rem auto; 
+            border-radius: 2rem; 
+            overflow: hidden;
+            border: 4px solid var(--kawaii-pink);
+            touch-action: none; /* Crucial for mobile scratch */
+        }
+        canvas#scratchCanvas { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            z-index: 10; 
+            width: 100%; 
+            height: 100%;
+            cursor: crosshair;
+        }
+        .scratch-inner {
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            background: #1c0a2e; 
+            padding: 20px; 
+            text-align: center;
+        }
 
         /* Animations */
         .floating { animation: floatAnim 3s ease-in-out infinite; }
         @keyframes floatAnim {
             0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-12px) rotate(2deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
         }
 
         .puffy-entry { animation: puffyIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
         @keyframes puffyIn {
-            0% { opacity: 0; transform: scale(0.6) translateY(50px); filter: blur(5px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
-        }
-
-        /* Interactive Elements */
-        .scratch-box {
-            position: relative; 
-            width: 100%; 
-            height: 140px;
-            margin: 1rem auto; 
-            border-radius: 2rem; 
-            overflow: hidden;
-            border: 3px solid var(--kawaii-pink);
-            touch-action: none;
-        }
-        canvas#scratchCanvas { position: absolute; top: 0; left: 0; z-index: 10; width: 100%; height: 100%; }
-        .scratch-inner {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            display: flex; align-items: center; justify-content: center;
-            background: #1c0a2e; padding: 15px; text-align: center;
+            0% { opacity: 0; transform: scale(0.6) translateY(30px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         .invisible-ink {
             color: transparent; 
             transition: all 0.6s ease; 
-            padding: 10px 18px;
+            padding: 8px 16px;
             border-radius: 20px;
             background: rgba(255, 255, 255, 0.08);
             display: inline-block;
-            cursor: pointer;
             border: 1px dashed var(--kawaii-pink);
             user-select: none;
         }
@@ -123,7 +145,6 @@
 
         .progress-bar {
             height: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; overflow: hidden; width: 60%;
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         .progress-fill { 
             height: 100%; 
@@ -137,7 +158,7 @@
         }
         @keyframes sparkOut {
             0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-            100% { transform: translate(-50%, -100%) scale(0); opacity: 0; }
+            100% { transform: translate(-50%, -120%) scale(0); opacity: 0; }
         }
 
         .star-sparkle {
@@ -155,6 +176,7 @@
     <div id="stars-container" class="fixed inset-0 pointer-events-none z-0"></div>
     <div id="decorations" class="fixed inset-0 pointer-events-none z-0"></div>
 
+    <!-- Background Music -->
     <audio id="bgMusic" loop preload="auto">
         <source src="song.mp3" type="audio/mpeg">
     </audio>
@@ -162,25 +184,25 @@
     <!-- Lock Screen -->
     <div id="lockScreen" class="fixed inset-0 z-50 flex items-center justify-center bg-[#0a0510]">
         <div class="glass-card text-center puffy-entry">
-            <div class="text-[70px] mb-6 floating">🐰</div>
-            <h1 class="cute-font text-3xl text-pink-300 mb-3">Hello Nikku!</h1>
-            <p class="text-slate-400 text-sm mb-8 handwritten text-xl">Duniya ki sabse pyari ladki ke liye... ✨</p>
+            <div class="text-[70px] mb-4 floating">🐰</div>
+            <h1 class="cute-font text-3xl text-pink-300 mb-2">Hello Nikku!</h1>
+            <p class="text-slate-400 text-sm mb-6 handwritten text-xl">Duniya ki sabse cute ladki ke liye ek surprise book... ✨</p>
             <input type="password" id="passCode" placeholder="Nikku?" class="w-full bg-purple-900/20 px-6 py-4 rounded-full border-2 border-pink-500/30 focus:border-pink-400 outline-none text-center text-pink-200 mb-6 font-bold text-xl tracking-widest">
-            <button onclick="unlockBook()" class="w-full text-white font-bold py-4 pill-btn text-lg shadow-lg">Open Magic! ✨</button>
-            <p id="errorMsg" class="hidden text-pink-400 text-xs mt-4 font-bold animate-bounce">Arey! Password 'nikku' hai 🥺</p>
+            <button onclick="unlockBook()" class="w-full bg-pink-500 text-white font-bold py-4 pill-btn text-lg shadow-lg">Start Magic! ✨</button>
+            <p id="errorMsg" class="hidden text-pink-400 text-xs mt-4 font-bold animate-bounce text-center">Gussa mat karo, password toh 'nikku' hai! 🥺</p>
         </div>
     </div>
 
-    <!-- Main Book -->
+    <!-- Main Book Container -->
     <div id="bookContainer" class="hidden w-full h-full flex-col items-center justify-center z-10 px-4">
-        <div class="flex flex-col items-center mb-6 w-full">
-            <h2 class="cute-font text-2xl text-pink-300 mb-3">Magic Book 🍭</h2>
+        <div class="flex flex-col items-center mb-4 w-full">
+            <h2 class="cute-font text-2xl text-pink-300 mb-2 drop-shadow-lg">Magic Scrapbook 🍭</h2>
             <div class="progress-bar"><div id="progressFill" class="progress-fill" style="width: 5%;"></div></div>
-            <p id="pageNumber" class="text-[10px] text-pink-100 mt-2 font-bold uppercase tracking-widest bg-pink-500/20 px-3 py-1 rounded-full">Story 1 / 20</p>
+            <p id="pageNumber" class="text-[10px] text-pink-100 mt-2 font-bold uppercase tracking-widest bg-pink-500/20 px-3 py-1 rounded-full border border-pink-500/20">Story 1 / 20</p>
         </div>
 
         <div class="relative glass-card flex flex-col items-center justify-center text-center" id="pageDisplay">
-            <!-- Dynamic Content -->
+            <!-- JavaScript will inject pages here -->
         </div>
 
         <div class="flex justify-between items-center mt-6 w-full max-w-[320px] mx-auto pb-4">
@@ -195,26 +217,26 @@
         const totalPages = 20;
 
         const bookData = {
-            1: { emoji: '🥺', title: 'I Am Sowwy!', text: 'Nikku, main jaanta hoon mujhse galti hui. Ye 20 magical pages sirf tumhe hasane ke liye hain.' },
-            2: { emoji: '🪄', title: 'Magic Wish', text: 'Eyes band karo... Maine ek spell cast kiya hai jisse tumhara gussa gayab ho jayega! 🫧' },
+            1: { emoji: '🥺', title: 'I Am Sowwy!', text: 'Nikku, main jaanta hoon mujhse galti hui. Ye 20 magical pages sirf tumhe hasane ke liye hain. Please poora dekhna! ❤️' },
+            2: { emoji: '🪄', title: 'Magical Wish', text: 'Eyes band karo... Maine ek spell cast kiya hai jisse tumhara gussa magically gayab ho jayega! 🫧' },
             3: { emoji: '💌', title: 'Secret Tap', text: 'Box par tap karke reveal karo ek secret: <br><br><span class="invisible-ink handwritten text-2xl" onclick="this.classList.toggle(\'revealed\')">Duniya ki sabse pyari Nikku! ❤️</span>' },
             4: { emoji: '🐱', title: 'Kitty Face', text: 'Main bilkul ek cute kitten jaisi shakal bana ke maafi maang raha hoon. Maan jaao na? 🐾' },
             5: { emoji: '🍭', title: 'Candy Pact', text: 'Deal: Maafi ke badle dher saari ice-cream aur chocolates jab hum milenge! 🍦🍫' },
             6: { emoji: '🦋', title: 'Titliyan', text: 'Jab tum smile karti ho, mere dil mein hazaron titliyan udne lagti hain. Ek smile please? 🦋' },
-            7: { emoji: '🤳', title: 'Look Here', text: 'Phone ke reflection mein dekho... Wahan jo sabse beautiful insaan hai, wahi meri har khushi hai. ❤️' },
-            8: { emoji: '🌈', title: 'Rainbow Bond', text: 'Jhagre badal hain, hamari dosti hamesha rainbow ki tarah chamkegi! 🌈' },
-            9: { emoji: '🍼', title: 'Baby Mode', text: 'Arey Nikku baby, itna gussa kyun? Gusse mein cheeks kitne cute lagte hain na? Maan jaao! 🍼' },
-            10: { emoji: '🎁', title: 'Scratch Prize', type: 'scratch', text: 'Box scratch karke apna secret gift dekho!' },
-            11: { emoji: '🌙', title: 'Sleepy Sorry', text: 'Mujhe neend nahi aayegi jab tak tumhara "Maaf Kiya" message nahi aa jata. Sorry na! 😴' },
-            12: { emoji: '❄️', title: 'Chill Pill', text: 'Ye lo ek virtual scoop 🍦... Thanda thanda feel karo aur sara gussa dabba do.' },
+            7: { emoji: '🤳', title: 'Mirror Magic', text: 'Phone ke reflection mein dekho... Wahan jo sabse beautiful insaan hai, wahi meri har khushi ki wajah hai. ❤️' },
+            8: { emoji: '🌈', title: 'Rainbow Bond', text: 'Jhagre badal hain, hamari dosti hamesha rainbow ki tarah chamkegi! Rainbow smile please? 🌈' },
+            9: { emoji: '🍼', title: 'Baby Mode', text: 'Arey Nikku baby, itna gussa kyun? Gusse mein cheeks kitne cute lagte hain na? Maan jaao! 🥺🍼' },
+            10: { emoji: '🎁', title: 'Scratch Prize', type: 'scratch', text: 'Box scratch karke apna secret gift aur promise dekho!' },
+            11: { emoji: '🌙', title: 'Sweet Dreams', text: 'Mujhe neend nahi aayegi jab tak tumhara "Maaf Kiya" wala message nahi aa jata. Sorry na! 😴' },
+            12: { emoji: '❄️', title: 'Chill Out', text: 'Ye lo ek virtual scoop 🍦... Thanda thanda feel karo aur sara gussa dabba do.' },
             13: { emoji: '🌸', title: 'Blooming', text: 'Duniya ke saare phool milkar bhi tumhare jitne sundar nahi ho sakte. You are my star! 🌸' },
             14: { emoji: '🦄', title: 'Magical Us', text: 'Humara bond itna magical aur rare hai ki hum ise chhoti baaton pe kharab nahi kar sakte. ✨' },
             15: { emoji: '🌬️', title: 'Halki Saans', text: 'Ek gehri saans lo... aur bolo "Main sabse cute hoon, gussa khatam!" 😂 🧘‍♀️' },
             16: { emoji: '💖', title: 'Heart Tap', type: 'pulse', text: 'Is heart par tap karke dekho, ye tumhare liye hi itna fast dhadak raha hai! ✨' },
             17: { emoji: '🍕', title: 'Yummy Deal', text: 'Promise! Next time hum tumhara sabse favorite khana khayenge bina kisi fight ke! 🍟' },
-            18: { emoji: '🎶', title: 'Music Mode', text: 'Ye background music suniye... Iski har ek dhun mein mera "Sorry" hai. ❤️' },
-            19: { emoji: '⚖️', title: 'The Faisla', type: 'verdict', text: 'Ab final bataiye... Kya is pagal ko maafi milegi? Pakka?' },
-            20: { emoji: '🎉', title: 'Yayyy!', type: 'finale', text: 'Success! Nikku ne maaf kar diya! I love you my star! ❤️ Call pe aao jaldi!' }
+            18: { emoji: '🎶', title: 'Melody Mode', text: 'Ye background music suniye... Iski har ek dhun mein mera "Sorry" hai. ❤️' },
+            19: { emoji: '⚖️', title: 'The Verdict', type: 'verdict', text: 'Ab final bataiye... Kya is pagal ko maafi milegi? Pakka?' },
+            20: { emoji: '🎉', title: 'Success!', type: 'finale', text: 'Success! Nikku ne maaf kar diya! I love you my star! ❤️ Call pe aao jaldi!' }
         };
 
         function unlockBook() {
@@ -229,7 +251,7 @@
                 celebrate(100);
             } else {
                 document.getElementById('errorMsg').classList.remove('hidden');
-                setTimeout(() => document.getElementById('errorMsg').classList.add('hidden'), 2000);
+                setTimeout(() => document.getElementById('errorMsg').classList.add('hidden'), 3000);
             }
         }
 
@@ -263,7 +285,7 @@
             display.appendChild(textP);
 
             if(content.type === 'scratch') {
-                const scratchHTML = `<div class="scratch-box shadow-xl mt-4"><div class="scratch-inner"><p class="text-pink-300 font-bold p-2 text-sm">Promise: Agli baar bina baat call cut nahi karunga! ❤️</p></div><canvas id="scratchCanvas"></canvas></div>`;
+                const scratchHTML = `<div class="scratch-container shadow-xl mt-4"><div class="scratch-inner"><p class="text-pink-300 font-bold p-2 text-sm">Promise: Agli baar bina baat call cut nahi karunga! ❤️</p></div><canvas id="scratchCanvas"></canvas></div>`;
                 const tempDiv = document.createElement('div');
                 tempDiv.innerHTML = scratchHTML;
                 display.appendChild(tempDiv);
@@ -271,7 +293,7 @@
             }
 
             if(content.type === 'verdict') {
-                const buttons = `<div class="flex flex-col space-y-4 items-center mt-8 w-full"><button onclick="changePage(1)" class="w-full bg-green-500 text-white font-bold py-4 rounded-full pill-btn text-lg">Haan, Maaf Kiya! ✅</button><button id="noBtn" onclick="moveNoButton()" class="text-pink-200/40 text-xs underline italic">Nahi! (Pakad ke dikhao)</button></div>`;
+                const buttons = `<div class="flex flex-col space-y-4 items-center mt-8 w-full"><button onclick="changePage(1)" class="w-full bg-green-500 text-white font-bold py-4 rounded-full pill-btn text-lg">Haan, Maaf Kiya! ✅</button><button id="noBtn" ontouchstart="moveNoButton(event)" onclick="moveNoButton(event)" class="text-pink-200/40 text-xs underline italic">Nahi! (Pakad ke dikhao)</button></div>`;
                 const tempDiv = document.createElement('div');
                 tempDiv.innerHTML = buttons;
                 display.appendChild(tempDiv);
@@ -325,24 +347,28 @@
             
             ctx.fillStyle = '#6b4194'; 
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.font = 'bold 14px Fredoka';
+            ctx.font = 'bold 15px Fredoka';
             ctx.fillStyle = '#ffc2d1';
             ctx.textAlign = 'center';
-            ctx.fillText('RUB KARO ❤️', canvas.width/2, canvas.height/2 + 5);
+            ctx.fillText('UNGAL SE RUB KARO ❤️', canvas.width/2, canvas.height/2 + 5);
 
-            const scratch = (x, y) => {
-                ctx.globalCompositeOperation = 'destination-out';
-                ctx.beginPath();
-                ctx.arc(x, y, 25, 0, Math.PI * 2);
-                ctx.fill();
-            };
-
-            const handleMove = (e) => {
-                if(!isDrawing) return;
+            const getPos = (e) => {
                 const rect = canvas.getBoundingClientRect();
                 const clientX = e.touches ? e.touches[0].clientX : e.clientX;
                 const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-                scratch(clientX - rect.left, clientY - rect.top);
+                return {
+                    x: clientX - rect.left,
+                    y: clientY - rect.top
+                };
+            };
+
+            const scratch = (e) => {
+                if(!isDrawing) return;
+                const pos = getPos(e);
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, 25, 0, Math.PI * 2);
+                ctx.fill();
                 e.preventDefault();
             };
 
@@ -350,18 +376,24 @@
             canvas.addEventListener('touchstart', (e) => { isDrawing = true; }, {passive: false});
             window.addEventListener('mouseup', () => isDrawing = false);
             window.addEventListener('touchend', () => isDrawing = false);
-            canvas.addEventListener('mousemove', handleMove);
-            canvas.addEventListener('touchmove', handleMove, {passive: false});
+            canvas.addEventListener('mousemove', scratch);
+            canvas.addEventListener('touchmove', scratch, {passive: false});
         }
 
         function celebrate(count) {
-            confetti({ particleCount: count, spread: 80, origin: { y: 0.8 }, colors: ['#ffafcc', '#ff85a2', '#ffffff'] });
+            confetti({ particleCount: count, spread: 80, origin: { y: 0.85 }, colors: ['#ffafcc', '#ff85a2', '#ffffff'] });
         }
 
-        function moveNoButton() {
+        function moveNoButton(e) {
+            if(e) e.preventDefault();
             const btn = document.getElementById('noBtn');
-            const x = Math.random() * (window.innerWidth - 100);
-            const y = Math.random() * (window.innerHeight - 50);
+            if(!btn) return;
+            
+            // Randomly move within the viewport, but keep away from edges
+            const padding = 60;
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth - padding) + padding/2;
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight - padding) + padding/2;
+            
             btn.style.position = 'fixed';
             btn.style.left = x + 'px';
             btn.style.top = y + 'px';
