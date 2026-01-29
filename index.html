@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -35,6 +35,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
         }
 
         .cute-font { font-family: 'DynaPuff', cursive; }
@@ -42,104 +43,101 @@
 
         /* Super Bubbly Card */
         .glass-card {
-            background: rgba(40, 25, 65, 0.92);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 3px solid rgba(255, 194, 209, 0.3);
-            box-shadow: 0 0 50px rgba(255, 133, 162, 0.2);
+            background: rgba(45, 30, 70, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 3px solid rgba(255, 194, 209, 0.4);
+            box-shadow: 0 0 40px rgba(255, 133, 162, 0.3);
             border-radius: 3.5rem;
-            width: 90%;
+            width: 92%;
             max-width: 360px;
             margin: auto;
             position: relative;
             z-index: 20;
-            overflow: hidden;
+            padding: 2rem;
+            max-height: 85vh;
+            overflow-y: auto;
+            scrollbar-width: none;
         }
+        .glass-card::-webkit-scrollbar { display: none; }
 
-        /* Puffy Pudding Buttons */
+        /* Pudding Buttons */
         .pill-btn {
             border-radius: 999px;
             background: linear-gradient(135deg, #ff85a2 0%, #ffafcc 100%);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 2px solid rgba(255, 255, 255, 0.4);
             color: white;
-            box-shadow: 0 8px 20px rgba(255, 133, 162, 0.4);
+            box-shadow: 0 8px 15px rgba(255, 133, 162, 0.4);
         }
-        .pill-btn:active { transform: scale(0.9); box-shadow: 0 4px 10px rgba(255, 133, 162, 0.2); }
+        .pill-btn:active { transform: scale(0.92); }
 
-        /* Magical Floating Animations */
+        /* Animations */
         .floating { animation: floatAnim 3s ease-in-out infinite; }
         @keyframes floatAnim {
             0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(3deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
         }
 
-        .puffy-entry { animation: puffyIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+        .puffy-entry { animation: puffyIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
         @keyframes puffyIn {
-            0% { opacity: 0; transform: scale(0.4) translateY(100px) rotate(-10deg); filter: blur(10px); }
-            100% { opacity: 1; transform: scale(1) translateY(0) rotate(0deg); filter: blur(0); }
+            0% { opacity: 0; transform: scale(0.6) translateY(50px); filter: blur(5px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
         }
 
         /* Interactive Elements */
         .scratch-box {
             position: relative; 
             width: 100%; 
-            max-width: 280px;
-            height: 150px;
-            margin: 1.5rem auto; 
+            height: 140px;
+            margin: 1rem auto; 
             border-radius: 2rem; 
             overflow: hidden;
-            border: 4px solid var(--kawaii-pink);
+            border: 3px solid var(--kawaii-pink);
             touch-action: none;
         }
-        canvas#scratchCanvas { position: absolute; top: 0; left: 0; z-index: 10; cursor: crosshair; }
+        canvas#scratchCanvas { position: absolute; top: 0; left: 0; z-index: 10; width: 100%; height: 100%; }
         .scratch-inner {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             display: flex; align-items: center; justify-content: center;
-            background: #1c0a2e; border-radius: 1.8rem; padding: 20px;
+            background: #1c0a2e; padding: 15px; text-align: center;
         }
 
         .invisible-ink {
             color: transparent; 
             transition: all 0.6s ease; 
-            padding: 8px 16px;
+            padding: 10px 18px;
             border-radius: 20px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.08);
             display: inline-block;
             cursor: pointer;
             border: 1px dashed var(--kawaii-pink);
+            user-select: none;
         }
         .invisible-ink.revealed { 
             color: #fff; 
-            text-shadow: 0 0 10px var(--accent-pink), 0 0 20px var(--accent-pink);
+            text-shadow: 0 0 10px var(--accent-pink);
             background: rgba(255, 133, 162, 0.3);
             border-style: solid;
         }
 
-        /* Progress Bar Softness */
-        .progress-container {
-            height: 12px; background: rgba(255, 255, 255, 0.05); border-radius: 10px; overflow: hidden; width: 65%;
+        .progress-bar {
+            height: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; overflow: hidden; width: 60%;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         .progress-fill { 
             height: 100%; 
-            background: linear-gradient(to right, #ff85a2, #ffafcc, #bde0fe, #a2d2ff); 
-            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
+            background: linear-gradient(to right, #ff85a2, #bde0fe); 
+            transition: width 0.5s ease; 
         }
         
         .sparkle-trail {
             position: fixed; pointer-events: none; z-index: 9999;
-            animation: sparkOut 0.8s ease-out forwards;
+            animation: sparkOut 0.7s ease-out forwards;
         }
         @keyframes sparkOut {
             0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-            100% { transform: translate(-50%, -120%) scale(0); opacity: 0; }
-        }
-
-        .heart-pulse { animation: heartBeat 1.5s infinite; }
-        @keyframes heartBeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.15); filter: drop-shadow(0 0 15px var(--accent-pink)); }
+            100% { transform: translate(-50%, -100%) scale(0); opacity: 0; }
         }
 
         .star-sparkle {
@@ -148,47 +146,46 @@
         }
         @keyframes twinkle {
             0%, 100% { transform: scale(0); opacity: 0; }
-            50% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1); opacity: 0.4; }
         }
     </style>
 </head>
 <body onclick="spawnSparkle(event)">
 
-    <!-- Twinkling Stars & Decorations -->
     <div id="stars-container" class="fixed inset-0 pointer-events-none z-0"></div>
     <div id="decorations" class="fixed inset-0 pointer-events-none z-0"></div>
 
-    <audio id="bgMusic" loop>
+    <audio id="bgMusic" loop preload="auto">
         <source src="song.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Lock Screen (Extra Cute) -->
+    <!-- Lock Screen -->
     <div id="lockScreen" class="fixed inset-0 z-50 flex items-center justify-center bg-[#0a0510]">
-        <div class="glass-card p-12 text-center puffy-entry">
-            <div class="text-[80px] mb-8 floating select-none">🐰</div>
-            <h1 class="cute-font text-4xl text-pink-300 mb-4">Hello Nikku!</h1>
-            <p class="text-slate-400 text-sm mb-10 handwritten text-lg">Duniya ki sabse cute ladki ke liye ek surprise book... Enter password ✨</p>
-            <input type="password" id="passCode" placeholder="Nikku?" class="w-full bg-purple-900/20 px-6 py-5 rounded-full border-2 border-pink-500/30 focus:border-pink-400 outline-none text-center text-pink-200 mb-8 font-bold text-2xl tracking-widest">
-            <button onclick="unlockBook()" class="w-full text-white font-bold py-5 pill-btn text-xl shadow-2xl">Start Magic! ✨</button>
-            <p id="errorMsg" class="hidden text-pink-400 text-sm mt-5 font-bold animate-bounce">Galat hai! Hint: nikku 🥺</p>
+        <div class="glass-card text-center puffy-entry">
+            <div class="text-[70px] mb-6 floating">🐰</div>
+            <h1 class="cute-font text-3xl text-pink-300 mb-3">Hello Nikku!</h1>
+            <p class="text-slate-400 text-sm mb-8 handwritten text-xl">Duniya ki sabse pyari ladki ke liye... ✨</p>
+            <input type="password" id="passCode" placeholder="Nikku?" class="w-full bg-purple-900/20 px-6 py-4 rounded-full border-2 border-pink-500/30 focus:border-pink-400 outline-none text-center text-pink-200 mb-6 font-bold text-xl tracking-widest">
+            <button onclick="unlockBook()" class="w-full text-white font-bold py-4 pill-btn text-lg shadow-lg">Open Magic! ✨</button>
+            <p id="errorMsg" class="hidden text-pink-400 text-xs mt-4 font-bold animate-bounce">Arey! Password 'nikku' hai 🥺</p>
         </div>
     </div>
 
-    <!-- Main Scrapbook (World's Cutest) -->
+    <!-- Main Book -->
     <div id="bookContainer" class="hidden w-full h-full flex-col items-center justify-center z-10 px-4">
-        <div class="flex flex-col items-center mb-8 w-full">
-            <h2 class="cute-font text-3xl text-pink-300 mb-4 drop-shadow-lg">Magic Book 🍭</h2>
-            <div class="progress-container"><div id="progressFill" class="progress-fill" style="width: 5%;"></div></div>
-            <p id="pageNumber" class="text-[12px] text-pink-100 mt-3 font-bold uppercase tracking-widest bg-pink-500/20 px-4 py-1 rounded-full border border-pink-500/20">Story 1 / 20</p>
+        <div class="flex flex-col items-center mb-6 w-full">
+            <h2 class="cute-font text-2xl text-pink-300 mb-3">Magic Book 🍭</h2>
+            <div class="progress-bar"><div id="progressFill" class="progress-fill" style="width: 5%;"></div></div>
+            <p id="pageNumber" class="text-[10px] text-pink-100 mt-2 font-bold uppercase tracking-widest bg-pink-500/20 px-3 py-1 rounded-full">Story 1 / 20</p>
         </div>
 
-        <div class="relative glass-card p-10 min-h-[480px] flex flex-col items-center justify-center text-center" id="pageDisplay">
-            <!-- Content will be injected by JS -->
+        <div class="relative glass-card flex flex-col items-center justify-center text-center" id="pageDisplay">
+            <!-- Dynamic Content -->
         </div>
 
-        <div class="flex justify-between items-center mt-8 w-full max-w-[340px] mx-auto">
-            <button id="prevBtn" onclick="changePage(-1)" class="text-pink-200/60 text-sm font-bold px-6 py-3">← Backie</button>
-            <button id="nextBtn" onclick="changePage(1)" class="text-white bg-pink-500 px-10 py-4 pill-btn font-bold text-lg shadow-2xl">Nextie →</button>
+        <div class="flex justify-between items-center mt-6 w-full max-w-[320px] mx-auto pb-4">
+            <button id="prevBtn" onclick="changePage(-1)" class="text-pink-200/60 text-xs font-bold px-4 py-2 opacity-0 pointer-events-none transition-all">← Back</button>
+            <button id="nextBtn" onclick="changePage(1)" class="text-white bg-pink-500 px-8 py-3 pill-btn font-bold text-md shadow-lg">Nextie →</button>
         </div>
     </div>
 
@@ -198,26 +195,26 @@
         const totalPages = 20;
 
         const bookData = {
-            1: { emoji: '🥺', title: 'I Am Sowwy!', text: 'Nikku, main jaanta hoon mujhse galti hui. Ye 20 magical pages sirf tumhe hasane ke liye hain. Please poora dekhna! ❤️' },
-            2: { emoji: '🪄', title: 'Magical Wish', text: 'Apne eyes band karo aur ek cute wish maango... Meri wish toh ye hai ki tum mujhse dobara kabhi gussa na ho! 🫧' },
+            1: { emoji: '🥺', title: 'I Am Sowwy!', text: 'Nikku, main jaanta hoon mujhse galti hui. Ye 20 magical pages sirf tumhe hasane ke liye hain.' },
+            2: { emoji: '🪄', title: 'Magic Wish', text: 'Eyes band karo... Maine ek spell cast kiya hai jisse tumhara gussa gayab ho jayega! 🫧' },
             3: { emoji: '💌', title: 'Secret Tap', text: 'Box par tap karke reveal karo ek secret: <br><br><span class="invisible-ink handwritten text-2xl" onclick="this.classList.toggle(\'revealed\')">Duniya ki sabse pyari Nikku! ❤️</span>' },
-            4: { emoji: '🐱', title: 'Kitty Face', text: 'Main bilkul ek cute kitten jaisi shakal bana ke maafi maang raha hoon. Maan jaao na? Nyo nyo! 🐾' },
-            5: { emoji: '🍭', title: 'Candy Pact', text: 'Deal: Tum maafi dogi, aur main tumhe dher saari ice-cream aur chocolates khilaunga jab hum milenge! 🍦🍫' },
-            6: { emoji: '🦋', title: 'Titliyan', text: 'Jab tum smile karti ho, mere dil mein hazaron titliyan udne lagti hain. Ek bar smile de do na Nikku? 🦋' },
-            7: { emoji: '🤳', title: 'Look in Mirror', text: 'Phone ke reflection mein dekho... Wahan jo sabse beautiful insaan hai, wahi meri har khushi ki wajah hai. ❤️' },
-            8: { emoji: '🌈', title: 'Rainbow Bond', text: 'Jhagre badal hain, hamari dosti hamesha rainbow ki tarah chamkegi! Rainbow smile please? 🌈' },
-            9: { emoji: '🍼', title: 'Baby Mode', text: 'Arey Nikku baby, itna gussa kyun? Gusse mein cheeks kitne cute lagte hain na? Ab maan bhi jaao! 🥺🍼' },
+            4: { emoji: '🐱', title: 'Kitty Face', text: 'Main bilkul ek cute kitten jaisi shakal bana ke maafi maang raha hoon. Maan jaao na? 🐾' },
+            5: { emoji: '🍭', title: 'Candy Pact', text: 'Deal: Maafi ke badle dher saari ice-cream aur chocolates jab hum milenge! 🍦🍫' },
+            6: { emoji: '🦋', title: 'Titliyan', text: 'Jab tum smile karti ho, mere dil mein hazaron titliyan udne lagti hain. Ek smile please? 🦋' },
+            7: { emoji: '🤳', title: 'Look Here', text: 'Phone ke reflection mein dekho... Wahan jo sabse beautiful insaan hai, wahi meri har khushi hai. ❤️' },
+            8: { emoji: '🌈', title: 'Rainbow Bond', text: 'Jhagre badal hain, hamari dosti hamesha rainbow ki tarah chamkegi! 🌈' },
+            9: { emoji: '🍼', title: 'Baby Mode', text: 'Arey Nikku baby, itna gussa kyun? Gusse mein cheeks kitne cute lagte hain na? Maan jaao! 🍼' },
             10: { emoji: '🎁', title: 'Scratch Prize', type: 'scratch', text: 'Box scratch karke apna secret gift dekho!' },
-            11: { emoji: '🌙', title: 'Sweet Dreams', text: 'Mujhe neend nahi aayegi jab tak tumhara "Maaf Kiya" wala message nahi aa jata. Sorry na! 😴' },
+            11: { emoji: '🌙', title: 'Sleepy Sorry', text: 'Mujhe neend nahi aayegi jab tak tumhara "Maaf Kiya" message nahi aa jata. Sorry na! 😴' },
             12: { emoji: '❄️', title: 'Chill Pill', text: 'Ye lo ek virtual scoop 🍦... Thanda thanda feel karo aur sara gussa dabba do.' },
-            13: { emoji: '🌸', title: 'Blooming Nikku', text: 'Duniya ke saare phool milkar bhi tumhare jitne sundar nahi ho sakte. You are my star! 🌸' },
+            13: { emoji: '🌸', title: 'Blooming', text: 'Duniya ke saare phool milkar bhi tumhare jitne sundar nahi ho sakte. You are my star! 🌸' },
             14: { emoji: '🦄', title: 'Magical Us', text: 'Humara bond itna magical aur rare hai ki hum ise chhoti baaton pe kharab nahi kar sakte. ✨' },
             15: { emoji: '🌬️', title: 'Halki Saans', text: 'Ek gehri saans lo... aur bolo "Main sabse cute hoon, gussa khatam!" 😂 🧘‍♀️' },
-            16: { emoji: '💖', title: 'Heart Tap', type: 'pulse', text: 'Is heart par tap karke dekho, ye tumhare liye hi itna fast dhadak raha hai! (Tap tap!) ✨' },
+            16: { emoji: '💖', title: 'Heart Tap', type: 'pulse', text: 'Is heart par tap karke dekho, ye tumhare liye hi itna fast dhadak raha hai! ✨' },
             17: { emoji: '🍕', title: 'Yummy Deal', text: 'Promise! Next time hum tumhara sabse favorite khana khayenge bina kisi fight ke! 🍟' },
-            18: { emoji: '🎶', title: 'Melody Mode', type: 'music', text: 'Ye background music suniye... Iski har ek dhun mein mera "Sorry" hai. ❤️' },
-            19: { emoji: '⚖️', title: 'The Faisla', type: 'verdict', text: 'Ab final bataiye... Kya is pagal ko maafi milegi? Pakka wala?' },
-            20: { emoji: '🎉', title: 'Yayyy! Success!', type: 'finale', text: 'Success! Nikku ne maaf kar diya! I love you my sweetest star! ❤️ Call pe aao jaldi!' }
+            18: { emoji: '🎶', title: 'Music Mode', text: 'Ye background music suniye... Iski har ek dhun mein mera "Sorry" hai. ❤️' },
+            19: { emoji: '⚖️', title: 'The Faisla', type: 'verdict', text: 'Ab final bataiye... Kya is pagal ko maafi milegi? Pakka?' },
+            20: { emoji: '🎉', title: 'Yayyy!', type: 'finale', text: 'Success! Nikku ne maaf kar diya! I love you my star! ❤️ Call pe aao jaldi!' }
         };
 
         function unlockBook() {
@@ -229,10 +226,10 @@
                 document.getElementById('bookContainer').classList.remove('hidden');
                 document.getElementById('bookContainer').classList.add('flex');
                 renderPage();
-                celebrate(150);
+                celebrate(100);
             } else {
                 document.getElementById('errorMsg').classList.remove('hidden');
-                setTimeout(() => document.getElementById('errorMsg').classList.add('hidden'), 2500);
+                setTimeout(() => document.getElementById('errorMsg').classList.add('hidden'), 2000);
             }
         }
 
@@ -246,19 +243,19 @@
             const content = bookData[currentPage];
 
             const emojiDiv = document.createElement('div');
-            emojiDiv.className = "text-[90px] floating mb-8 select-none";
-            if(content.type === 'pulse') {
-                emojiDiv.classList.add('cursor-pointer', 'heart-pulse');
-                emojiDiv.onclick = () => celebrate(50);
-            }
+            emojiDiv.className = "text-[80px] floating mb-6 select-none";
             emojiDiv.innerText = content.emoji;
+            if(content.type === 'pulse') {
+                emojiDiv.classList.add('cursor-pointer');
+                emojiDiv.onclick = () => celebrate(40);
+            }
             
             const titleH3 = document.createElement('h3');
-            titleH3.className = "cute-font text-3xl text-pink-300 mb-6";
+            titleH3.className = "cute-font text-2xl text-pink-300 mb-4";
             titleH3.innerText = content.title;
             
             const textP = document.createElement('div');
-            textP.className = "text-slate-100 italic text-lg leading-relaxed px-2 handwritten text-2xl";
+            textP.className = "text-slate-100 italic text-md leading-relaxed px-1 handwritten text-2xl";
             textP.innerHTML = content.text;
 
             display.appendChild(emojiDiv);
@@ -266,15 +263,15 @@
             display.appendChild(textP);
 
             if(content.type === 'scratch') {
-                const scratchHTML = `<div class="scratch-box shadow-2xl mt-6"><div class="scratch-inner"><p class="text-pink-300 font-bold p-4 text-center text-md">Promise: Agli baar bina baat call cut nahi karunga! ❤️</p></div><canvas id="scratchCanvas" width="280" height="150"></canvas></div>`;
+                const scratchHTML = `<div class="scratch-box shadow-xl mt-4"><div class="scratch-inner"><p class="text-pink-300 font-bold p-2 text-sm">Promise: Agli baar bina baat call cut nahi karunga! ❤️</p></div><canvas id="scratchCanvas"></canvas></div>`;
                 const tempDiv = document.createElement('div');
                 tempDiv.innerHTML = scratchHTML;
                 display.appendChild(tempDiv);
-                setTimeout(initScratchCard, 150);
+                setTimeout(initScratchCard, 200);
             }
 
             if(content.type === 'verdict') {
-                const buttons = `<div class="flex flex-col space-y-5 items-center mt-10 w-full"><button onclick="changePage(1)" class="w-full bg-green-500 text-white font-bold py-5 rounded-full pill-btn text-xl">Haan, Maaf Kiya! ✅</button><button id="noBtn" onclick="moveNoButton()" class="text-pink-200/40 text-sm underline italic">Nahi! (Pakad ke dikhao)</button></div>`;
+                const buttons = `<div class="flex flex-col space-y-4 items-center mt-8 w-full"><button onclick="changePage(1)" class="w-full bg-green-500 text-white font-bold py-4 rounded-full pill-btn text-lg">Haan, Maaf Kiya! ✅</button><button id="noBtn" onclick="moveNoButton()" class="text-pink-200/40 text-xs underline italic">Nahi! (Pakad ke dikhao)</button></div>`;
                 const tempDiv = document.createElement('div');
                 tempDiv.innerHTML = buttons;
                 display.appendChild(tempDiv);
@@ -282,7 +279,7 @@
 
             if(content.type === 'finale') {
                 celebrate(200);
-                setInterval(() => celebrate(50), 2500);
+                setInterval(() => celebrate(50), 3000);
             }
 
             updateUI();
@@ -298,27 +295,45 @@
         function updateUI() {
             document.getElementById('progressFill').style.width = (currentPage / totalPages * 100) + '%';
             document.getElementById('pageNumber').innerText = `Story ${currentPage} / ${totalPages}`;
-            document.getElementById('prevBtn').style.visibility = (currentPage === 1) ? 'hidden' : 'visible';
-            document.getElementById('nextBtn').style.visibility = (currentPage === totalPages || currentPage === 19) ? 'hidden' : 'visible';
+            
+            const prev = document.getElementById('prevBtn');
+            if(currentPage === 1) {
+                prev.style.opacity = '0';
+                prev.style.pointerEvents = 'none';
+            } else {
+                prev.style.opacity = '1';
+                prev.style.pointerEvents = 'auto';
+            }
+
+            const next = document.getElementById('nextBtn');
+            if(currentPage === totalPages || currentPage === 19) {
+                next.style.visibility = 'hidden';
+            } else {
+                next.style.visibility = 'visible';
+            }
         }
 
         function initScratchCard() {
             const canvas = document.getElementById('scratchCanvas');
             if(!canvas) return;
+            const container = canvas.parentElement;
+            canvas.width = container.offsetWidth;
+            canvas.height = container.offsetHeight;
+            
             const ctx = canvas.getContext('2d');
             let isDrawing = false;
             
             ctx.fillStyle = '#6b4194'; 
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.font = 'bold 16px Fredoka';
+            ctx.font = 'bold 14px Fredoka';
             ctx.fillStyle = '#ffc2d1';
             ctx.textAlign = 'center';
-            ctx.fillText('UNGAL SE RUB KARO ❤️', canvas.width/2, canvas.height/2 + 5);
+            ctx.fillText('RUB KARO ❤️', canvas.width/2, canvas.height/2 + 5);
 
             const scratch = (x, y) => {
                 ctx.globalCompositeOperation = 'destination-out';
                 ctx.beginPath();
-                ctx.arc(x, y, 28, 0, Math.PI * 2);
+                ctx.arc(x, y, 25, 0, Math.PI * 2);
                 ctx.fill();
             };
 
@@ -328,24 +343,25 @@
                 const clientX = e.touches ? e.touches[0].clientX : e.clientX;
                 const clientY = e.touches ? e.touches[0].clientY : e.clientY;
                 scratch(clientX - rect.left, clientY - rect.top);
+                e.preventDefault();
             };
 
             canvas.addEventListener('mousedown', () => isDrawing = true);
-            canvas.addEventListener('touchstart', (e) => { isDrawing = true; e.preventDefault(); }, {passive: false});
+            canvas.addEventListener('touchstart', (e) => { isDrawing = true; }, {passive: false});
             window.addEventListener('mouseup', () => isDrawing = false);
             window.addEventListener('touchend', () => isDrawing = false);
             canvas.addEventListener('mousemove', handleMove);
-            canvas.addEventListener('touchmove', (e) => { handleMove(e); e.preventDefault(); }, {passive: false});
+            canvas.addEventListener('touchmove', handleMove, {passive: false});
         }
 
         function celebrate(count) {
-            confetti({ particleCount: count, spread: 80, origin: { y: 0.85 }, colors: ['#ffafcc', '#ff85a2', '#ffffff', '#bde0fe'] });
+            confetti({ particleCount: count, spread: 80, origin: { y: 0.8 }, colors: ['#ffafcc', '#ff85a2', '#ffffff'] });
         }
 
         function moveNoButton() {
             const btn = document.getElementById('noBtn');
-            const x = Math.random() * (window.innerWidth - 120);
-            const y = Math.random() * (window.innerHeight - 60);
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
             btn.style.position = 'fixed';
             btn.style.left = x + 'px';
             btn.style.top = y + 'px';
@@ -355,7 +371,7 @@
         function spawnSparkle(e) {
             const p = document.createElement('div');
             p.className = 'sparkle-trail text-2xl select-none';
-            p.innerText = ['✨', '💖', '⭐', '🎀'][Math.floor(Math.random()*4)];
+            p.innerText = ['✨', '💖', '⭐'][Math.floor(Math.random()*3)];
             p.style.left = e.clientX + 'px';
             p.style.top = e.clientY + 'px';
             document.body.appendChild(p);
@@ -365,10 +381,10 @@
         window.onload = function() {
             const starCont = document.getElementById('stars-container');
             const decorCont = document.getElementById('decorations');
-            for(let i=0; i<35; i++) {
+            for(let i=0; i<30; i++) {
                 const s = document.createElement('div');
                 s.className = 'star-sparkle';
-                s.style.width = Math.random()*5 + 'px';
+                s.style.width = Math.random()*4 + 'px';
                 s.style.height = s.style.width;
                 s.style.left = Math.random()*100 + 'vw';
                 s.style.top = Math.random()*100 + 'vh';
@@ -378,12 +394,12 @@
             setInterval(() => {
                 const d = document.createElement('div');
                 d.className = 'floating fixed pointer-events-none opacity-20 text-3xl';
-                d.innerText = ['🌸', '✨', '🧸', '🦋', '🐱', '🐼', '🍰'][Math.floor(Math.random()*7)];
+                d.innerText = ['🌸', '✨', '🧸', '🦋', '🐱', '🍰'][Math.floor(Math.random()*6)];
                 d.style.left = Math.random()*100 + 'vw';
                 d.style.top = Math.random()*100 + 'vh';
                 decorCont.appendChild(d);
                 setTimeout(() => d.remove(), 6000);
-            }, 1000);
+            }, 1500);
         };
     </script>
 </body>
